@@ -1,0 +1,16 @@
+version: '3'
+name: docker_php
+services:
+  backend:
+    container_name: docker_php_nginx
+    image: mochrira/php:7.4.33-nginx
+    build: 
+      context: ./
+      dockerfile: dockerfile
+    volumes:
+      - ./example:/home/php/www
+    ports:
+      - 8080:80
+    environment:
+      - PRODUCTION=$PRODUCTION
+      - REINSTALL_COMPOSER=$REINSTALL_COMPOSER
