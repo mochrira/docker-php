@@ -7,4 +7,4 @@ PRODUCTION=YES|NO (Default: NO)
 REINSTALL_COMPOSER=YES|NO (Default: NO)
 ```
 
-For available flavors visit [Our Docker Hub](https://hub.docker.com/repositories/mochrira)
+For available flavors visit [Our Docker Hub](https://hub.docker.com/r/mochrira/php/tags)
