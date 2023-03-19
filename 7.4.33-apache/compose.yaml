@@ -11,3 +11,6 @@ services:
       - ./example:/home/php/www
     ports:
       - 8080:80
+    environment:
+      - PRODUCTION=$PRODUCTION
+      - REINSTALL_COMPOSER=$REINSTALL_COMPOSER
