@@ -1,0 +1,30 @@
+FROM httpd:alpine
+
+RUN apk update
+RUN echo -e "http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk add --no-cache php7 php7-fpm php7-sodium php7-openssl php7-mysqlnd php7-mysqli php7-json php7-phar php7-mbstring sudo supervisor
+
+RUN sudo ln -s /usr/bin/php7 /usr/bin/php
+RUN sed -i 's/;pidfile/pidfile/g' /etc/supervisord.conf
+RUN sed -i 's/;\n;extension=/extension=sodium\nextension=openssl\nextension=mbstring\nextension=mysqlnd\nextension=mysqli\n;\n;extension=/g' /etc/php7/php.ini
+
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY supervisor.ini /etc/supervisor.d/httpd.ini
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN mv composer.phar /usr/local/bin/composer
+
+RUN addgroup -g 1000 php
+RUN adduser -u 1000 -G php -D php
+RUN mkdir -p /etc/sudoers.d
+RUN echo "php ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/php
+RUN chmod 0440 /etc/sudoers.d/php
+
+COPY entrypoint.sh /entrypoint.sh
+
+USER php
+WORKDIR /home/php/www
+ENTRYPOINT [ "/bin/sh", "/entrypoint.sh"]

@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "006788e79bcff1cde81d03b3fdcb335c",
+    "packages": [
+        {
+            "name": "mochrira/selvi-framework",
+            "version": "0.4.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mochrira/selvi-framework.git",
+                "reference": "7168875445d8cf450ea2f57936e579b7259ea6bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mochrira/selvi-framework/zipball/7168875445d8cf450ea2f57936e579b7259ea6bb",
+                "reference": "7168875445d8cf450ea2f57936e579b7259ea6bb",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "helpers/QueryHelper.php",
+                    "helpers/ResponseHelper.php",
+                    "helpers/UriHelper.php"
+                ],
+                "psr-4": {
+                    "Selvi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mochrira",
+                    "email": "mochrira@gmail.com"
+                }
+            ],
+            "description": "Super fast PHP Framework for building API",
+            "support": {
+                "issues": "https://github.com/mochrira/selvi-framework/issues",
+                "source": "https://github.com/mochrira/selvi-framework/tree/0.4.14"
+            },
+            "time": "2023-03-17T12:35:16+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
