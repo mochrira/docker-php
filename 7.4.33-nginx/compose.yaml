@@ -12,5 +12,6 @@ services:
     ports:
       - 8080:80
     environment:
-      - PRODUCTION=$PRODUCTION
-      - REINSTALL_COMPOSER=$REINSTALL_COMPOSER
+      - PRODUCTION=YES
+      - REINSTALL_COMPOSER=YES
+      - BASE_URL=http://localhost:8080
