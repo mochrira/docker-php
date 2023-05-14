@@ -2,7 +2,7 @@ version: '3'
 name: docker_php
 services:
   backend:
-    container_name: docker_php_nginx
+    container_name: docker_php_nginx_beta
     image: mochrira/php:7.4.33-nginx
     build: 
       context: ./
@@ -10,8 +10,7 @@ services:
     volumes:
       - ./example:/home/php/www
     ports:
-      - 8080:80
+      - 8089:80
     environment:
       - PRODUCTION=YES
-      - REINSTALL_COMPOSER=YES
-      - BASE_URL=http://localhost:8080
+      - REINSTALL_COMPOSER=NO

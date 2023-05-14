@@ -1,13 +1,21 @@
-echo -e "[www]" | sudo tee /etc/php7/php-fpm.d/docker.env.conf > /dev/null;
-
 PRODUCTION=${PRODUCTION:-NO}
-[ $PRODUCTION == "YES" ] && echo -e "env[PRODUCTION]=YES" | sudo tee -a /etc/php7/php-fpm.d/docker.env.conf > /dev/null;
-
 REINSTALL_COMPOSER=${REINSTALL_COMPOSER:-NO}
-[ $REINSTALL_COMPOSER == "YES" ] && echo -e "env[REINSTALL_COMPOSER]=YES" | sudo tee -a /etc/php7/php-fpm.d/docker.env.conf > /dev/null;
-
 BASE_URL=${BASE_URL}
-[ ! -z "$BASE_URL" ] && echo -e "env[BASE_URL]=$BASE_URL" | sudo tee -a /etc/php7/php-fpm.d/docker.env.conf > /dev/null;
+
+mkdir -p /home/php/tmp
+sudo sed -i 's/user = www-data/user = php/g' /usr/local/etc/php-fpm.d/www.conf
+sudo sed -i 's/group = www-data/group = php/g' /usr/local/etc/php-fpm.d/www.conf
+sudo sed -i 's/user nginx/user php/g' /etc/nginx/nginx.conf
+
+sudo ln -s /dev/stdout /var/log/nginx/access.log
+sudo ln -s /dev/stderr /var/log/nginx/error.log
+
+if [ $PRODUCTION == "YES" ]; then
+    sudo sed -i 's/user = php/user = root/g' /usr/local/etc/php-fpm.d/www.conf
+    sudo sed -i 's/group = php/group = root/g' /usr/local/etc/php-fpm.d/www.conf
+    sudo sed -i 's/user php/user root/g' /etc/nginx/nginx.conf
+    sudo mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+fi
 
 if [ -f "composer.json" ]; then
     if [[ ! -d "vendor" || $REINSTALL_COMPOSER == "YES" ]]; then
