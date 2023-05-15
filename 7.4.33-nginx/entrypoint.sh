@@ -6,6 +6,7 @@ mkdir -p /home/php/tmp
 sudo sed -i 's/user = www-data/user = php/g' /usr/local/etc/php-fpm.d/www.conf
 sudo sed -i 's/group = www-data/group = php/g' /usr/local/etc/php-fpm.d/www.conf
 sudo sed -i 's/user nginx/user php/g' /etc/nginx/nginx.conf
+sudo mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 
 sudo ln -s /dev/stdout /var/log/nginx/access.log
 sudo ln -s /dev/stderr /var/log/nginx/error.log
@@ -14,7 +15,6 @@ if [ $PRODUCTION == "YES" ]; then
     sudo sed -i 's/user = php/user = root/g' /usr/local/etc/php-fpm.d/www.conf
     sudo sed -i 's/group = php/group = root/g' /usr/local/etc/php-fpm.d/www.conf
     sudo sed -i 's/user php/user root/g' /etc/nginx/nginx.conf
-    sudo mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 fi
 
 if [ -f "composer.json" ]; then
