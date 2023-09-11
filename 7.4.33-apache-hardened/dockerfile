@@ -2,7 +2,7 @@ FROM php:7.4.33-fpm-alpine
 
 # install prerequisities
 RUN apk update \
-    && apk add --no-cache apache2 apache2-proxy sudo supervisor icu-dev libzip-dev libpng-dev \
+    && apk add --no-cache apache2 apache2-proxy supervisor icu-dev libzip-dev libpng-dev \
     && docker-php-ext-install mysqli intl gd zip
 
 # composer
