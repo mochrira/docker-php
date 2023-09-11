@@ -2,8 +2,8 @@ version: '3'
 name: docker_php
 services:
   backend:
-    container_name: docker_php_apache
-    image: mochrira/php:7.4.33-apache
+    container_name: docker_php_apache_hardened
+    image: mochrira/php:7.4.33-apache-hardened
     build: 
       context: ./
       dockerfile: dockerfile

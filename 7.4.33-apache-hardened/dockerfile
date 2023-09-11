@@ -11,6 +11,21 @@ RUN curl -fsSL 'https://github.com/composer/getcomposer.org/raw/main/web/downloa
     && mv /tmp/composer.phar /usr/local/bin/composer \
     && chmod +x /usr/local/bin/composer
 
+# configuring snuffleupagus
+RUN curl -fsSL 'https://github.com/jvoisin/snuffleupagus/archive/refs/tags/v0.9.0.zip' -o /tmp/snuffleupagus.zip \
+    && echo "f7274804d2a2cf473e9b692d1f9ebf16ef39ce3d0dbd054e7423a79e3378fe3b  /tmp/snuffleupagus.zip" | sha256sum -c \
+    && unzip -d /tmp /tmp/snuffleupagus.zip \
+    && rm /tmp/snuffleupagus.zip \
+    && docker-php-ext-configure /tmp/snuffleupagus-0.9.0/src --enable-snuffleupagus \
+    && docker-php-ext-install /tmp/snuffleupagus-0.9.0/src \
+    && rm -r /tmp/snuffleupagus-0.9.0 \
+    && rm -r /var/cache/apk/* \
+    && mkdir -p /usr/local/etc/snuffleupagus
+
+COPY ./snuffleupagus/snuffleupagus.ini /usr/local/etc/php/conf.d/docker-php-ext-snuffleupagus.ini
+COPY ./snuffleupagus/10-default.rules /usr/local/etc/snuffleupagus/10-default.rules
+
+# configuring supervisor
 RUN sed -i 's/;pidfile/pidfile/g' /etc/supervisord.conf \
     && mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 

@@ -4,28 +4,26 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "006788e79bcff1cde81d03b3fdcb335c",
+    "content-hash": "ab067e03a7ce98822627bb472a6742f1",
     "packages": [
         {
             "name": "mochrira/selvi-framework",
-            "version": "0.4.14",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mochrira/selvi-framework.git",
-                "reference": "7168875445d8cf450ea2f57936e579b7259ea6bb"
+                "reference": "9fd38c960d88c4b092c4b6421af001fadea3bcf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mochrira/selvi-framework/zipball/7168875445d8cf450ea2f57936e579b7259ea6bb",
-                "reference": "7168875445d8cf450ea2f57936e579b7259ea6bb",
+                "url": "https://api.github.com/repos/mochrira/selvi-framework/zipball/9fd38c960d88c4b092c4b6421af001fadea3bcf6",
+                "reference": "9fd38c960d88c4b092c4b6421af001fadea3bcf6",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "helpers/QueryHelper.php",
-                    "helpers/ResponseHelper.php",
-                    "helpers/UriHelper.php"
+                    "src/Helpers.php"
                 ],
                 "psr-4": {
                     "Selvi\\": "src/"
@@ -44,9 +42,9 @@
             "description": "Super fast PHP Framework for building API",
             "support": {
                 "issues": "https://github.com/mochrira/selvi-framework/issues",
-                "source": "https://github.com/mochrira/selvi-framework/tree/0.4.14"
+                "source": "https://github.com/mochrira/selvi-framework/tree/1.2.0"
             },
-            "time": "2023-03-17T12:35:16+00:00"
+            "time": "2023-07-02T06:56:41+00:00"
         }
     ],
     "packages-dev": [],
@@ -57,5 +55,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
