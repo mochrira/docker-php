@@ -27,6 +27,7 @@ COPY ./snuffleupagus/10-default.rules /usr/local/etc/snuffleupagus/10-default.ru
 
 # configuring supervisor
 RUN sed -i 's/;pidfile/pidfile/g' /etc/supervisord.conf \
+    && sed -i 's/;user=chrism/user=root/g' /etc/supervisord.conf \
     && mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 
 COPY httpd.conf /etc/apache2/httpd.conf

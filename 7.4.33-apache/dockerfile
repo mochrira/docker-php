@@ -12,10 +12,11 @@ RUN curl -fsSL 'https://github.com/composer/getcomposer.org/raw/main/web/downloa
     && chmod +x /usr/local/bin/composer
 
 RUN sed -i 's/;pidfile/pidfile/g' /etc/supervisord.conf \
+    && sed -i 's/;user=chrism/user=root/g' /etc/supervisord.conf \
     && mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 
 COPY httpd.conf /etc/apache2/httpd.conf
 COPY supervisor.ini /etc/supervisor.d/apache.ini
 
 COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT [ "/bin/sh", "/entrypoint.sh" ]
+ENTRYPOINT [ "/bin/sh", "/entrypoint.sh"]

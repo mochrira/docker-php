@@ -19,4 +19,4 @@ sed -i "s/group = www-data/group = $PHP_GROUP/g" /usr/local/etc/php-fpm.d/www.co
 
 ln -s /dev/stdout /var/log/apache2/access.log
 ln -s /dev/stderr /var/log/apache2/error.log
-/usr/bin/supervisord -n
+/usr/bin/supervisord -n -c /etc/supervisord.conf
